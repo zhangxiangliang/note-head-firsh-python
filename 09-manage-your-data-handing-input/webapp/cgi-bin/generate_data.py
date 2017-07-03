@@ -5,8 +5,8 @@ import json
 import athletemodel
 import yate
 
-athletes = athletemodel.get_from_store()
 form_data = cgi.FieldStorage()
-# athlete_name = form_data['which_athlete'].value
+athlete_id = form_data['which_athlete'].value
+athlete = athletemodel.get_athlete_from_id(athlete_id)
 print(yate.start_response('application/json'))
-print(json.dumps(athletes['James Lee'].as_dict))
+print(json.dumps(athlete))

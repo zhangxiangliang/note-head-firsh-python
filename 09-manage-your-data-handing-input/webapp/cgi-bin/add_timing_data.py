@@ -5,6 +5,8 @@ import os
 import time
 import sys
 import yate
+import sqlite3
+import athletemodel
 
 print(yate.start_response('text/plain'))
 addr = os.environ['REMOTE_ADDR']
@@ -23,4 +25,9 @@ for each_form_item in form.keys():
 
 print('--------Add-Timing-Data-End--------', file=sys.stderr)
 print(file=sys.stderr)
+
+the_id = form['AthleteName'].value
+the_time = form['TimeValue'].value
+
+athletemodel.update_athlete_timing_from_id_and_timer(the_id, the_time)
 print('Ok.')
